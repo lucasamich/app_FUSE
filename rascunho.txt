@@ -1,0 +1,10 @@
+1. Instalar o Docker
+2. Instalar o Docker Desktop
+
+# Executar o Docker
+1. Criar um Dockerfile (receita)
+    - Usa uma imagem pronta (rocker/r-ver:4.3.2) ou imagem básica (fedora)
+2. `build` na imagem -> Executar o Dockerfile -> Criar uma máquina virtual e copiar os arquivos
+3. `run` na imagem -> Ligar a maquina virtual
+    - run apenas em um script
+    - run em todos os scripts
