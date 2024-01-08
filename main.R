@@ -40,7 +40,8 @@ samples <- runMCMC(Cmcmc, niter = N_ITER, nburnin = N_BURN_IN, thin = LAG)
 print(Sys.time() - t)
 
 # Saving the posterior samples
-saveRDS(samples, file = "/app/posteriorSamples.rds")
+saveRDS(samples, file = "/app/data/posteriorSamples.rds")
+#system("ls")
 
 # Predict
 pred_data <- read.csv("./app/predict_data.csv")
@@ -64,6 +65,6 @@ posteriorStat <- list("media" = apply(predLocations$pred$pred,2,mean),
                       "q_50" = apply(predLocations$pred$pred, 2, function(x) quantile(x,probs = 0.5)),
                       "q_975" = apply(predLocations$pred$pred, 2, function(x) quantile(x,probs = 0.975)))
 
-saveRDS(posteriorStat, "./output/posteriorStatistics.rds") # Saving the posterior predictions
+saveRDS(posteriorStat, "./app/data/posteriorStatistics.rds") # Saving the posterior predictions
 
 print("DONE")
