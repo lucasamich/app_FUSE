@@ -23,4 +23,4 @@ COPY utils.R ./app/utils.R
 
 RUN R CMD INSTALL ./app/petroGeo2_0.2.9.tar.gz
 
-CMD ["Rscript", "./app/main.R"]
+ENTRYPOINT ["Rscript", "./app/main.R"]

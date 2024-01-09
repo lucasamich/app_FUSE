@@ -74,7 +74,7 @@ buildModel <- function(type,k,constants=NULL){
     
     Rmodel <- nsgpModel(likelihood = "NNGP",
                         constants = constants,
-                        coords = geo.crds,
+                        coords = geo.coords,
                         data = train_data$data$phi,
                         Sigma_model = "isotropic", # range
                         sigma_model = "constant",
@@ -118,7 +118,7 @@ buildModel <- function(type,k,constants=NULL){
     # petroGeo (Antigo)
     Rmodel <- nsgpModel(likelihood = "NNGP",
                         constants = constants,
-                        coords = geo.crds,
+                        coords = geo.coords,
                         sismicCoords = sismic.coords,
                         data = train_data$data$phi,
                         NN_size = "dynamic",

@@ -1,6 +1,18 @@
-library(petroGeo2) # Trocar para o FUSE 
+library(petroGeo2) # TODO: Trocar para o FUSE 
+
+# Getting args
+args <- commandArgs(trailingOnly = TRUE) |> tolower()
+if(length(args) == 0) stop("No arguments provided. Please provide the required arguments.")
+if(args[1] != "--model_type") stop("The first argument must be the desired model type. Use `--model_type`.")
+if(!any(args[2] %in% c("geographical","feature","mixture"))) stop("The `model_type` argument muste be one of: 'geographical', 'feature' or 'mixture'.")
+
+# TODO: remover ao usar o FUSE
+if(args[2] == "feature") MODEL_TYPE <- "sismic" else MODEL_TYPE <- args[2]
 
 source("./app/utils.R")
+
+
+cat("Running the",MODEL_TYPE,"model.\n")
 
 # Loading data
 train_data <- read.csv("./app/train_data.csv")
@@ -14,7 +26,7 @@ sismic.coords <- as.matrix(train_data$data[,c("rho","vp","vs")]) # Sismic Coords
 sismic.coords <- sismic.coords + rnorm(prod(dim(sismic.coords)),sd = 1e-04)
 Xmat <- as.matrix(cbind(1,train_data$data[,c("rho","vp","vs")])) # Design matrix
 
-MODEL_TYPE = "sismic"
+#MODEL_TYPE = "sismic"
 K <- 10
 
 # Build & compile the model
@@ -65,6 +77,6 @@ posteriorStat <- list("media" = apply(predLocations$pred$pred,2,mean),
                       "q_50" = apply(predLocations$pred$pred, 2, function(x) quantile(x,probs = 0.5)),
                       "q_975" = apply(predLocations$pred$pred, 2, function(x) quantile(x,probs = 0.975)))
 
-saveRDS(posteriorStat, "./app/data/posteriorStatistics.rds") # Saving the posterior predictions
+#saveRDS(posteriorStat, "./app/data/posteriorStatistics.rds") # Saving the posterior predictions
 
-print("DONE")
+cat("DONE\n")
