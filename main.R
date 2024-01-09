@@ -69,7 +69,7 @@ Sys.sleep(1.5)
 predLocations <- predModel(type = MODEL_TYPE)
 
 # Saving the posterior predictions
-#saveRDS(pred, "./output/posteriorPredictions.rds")
+saveRDS(pred, "./output/posteriorPredictions.rds")
 
 # Posterior statistics
 posteriorStat <- list("media" = apply(predLocations$pred$pred,2,mean),
@@ -77,6 +77,6 @@ posteriorStat <- list("media" = apply(predLocations$pred$pred,2,mean),
                       "q_50" = apply(predLocations$pred$pred, 2, function(x) quantile(x,probs = 0.5)),
                       "q_975" = apply(predLocations$pred$pred, 2, function(x) quantile(x,probs = 0.975)))
 
-#saveRDS(posteriorStat, "./app/data/posteriorStatistics.rds") # Saving the posterior predictions
+saveRDS(posteriorStat, "./app/data/posteriorStatistics.rds") # Saving the posterior predictions
 
 cat("DONE\n")
