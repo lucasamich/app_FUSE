@@ -6,7 +6,7 @@
 .RData
 .RDataTmp
 
-# Data files
+# Data folders
 data/
 packages/
 output/
@@ -19,6 +19,7 @@ output/
 
 # Output files from R CMD build
 /*.tar.gz
+/*.tar
 
 # Output files from R CMD check
 /*.Rcheck/

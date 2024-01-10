@@ -1,7 +1,7 @@
 # Install R-version 4.3.2 as image
 FROM r-base:4.3.2
 
-WORKDIR /app
+WORKDIR /app/
 
 RUN apt-get update -qq && apt-get install -y libglpk-dev
 
